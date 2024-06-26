@@ -1,58 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
-
-    <!-- Global CSS (CSS rules you want applied to all pages) -->
-    <link rel="stylesheet" href="./global.css">
-
-    <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="./landing.css">
-
-    <title>Login to the Microblog Network!</title>
-
-    <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
-    <script src="./auth.js"></script>
-    <script>
-        if (isLoggedIn() === true) window.location.replace("/posts");
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/landing.css">
 </head>
+
 <body>
 
-    <header>
-        <h1>Welcome to <code>YOUR MICROBLOG NETWORK</code></h1>
-    </header>
+  <title>Web Design Mastery | Travel.Io</title>
+  </head>
 
-    <main>
+  <body class="bg-black text-white">
+    <nav>
+      <div class="nav__logo"><a href="#">HYPERLINK</a></div>
+      <ul class="nav__links">
+        <li class="link">Home</li>
+        <li class="link">Login</li>
+        <li class="link">Register</li>
+        <li class="link">Contact Us</li>
+      </ul>
+      <div class="search__box">
+        <input type="text" placeholder="Search" />
+        <i class="ri-search-line"></i>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row ">
+        <div class="col-lg-6 mt-5">
+          <h1>CONNECT.INNOVATE.<br />INSPIRE.</h1>
+          <p>
+            Hyperlink is a pioneering microblogging platform dedicated to enhancing
+            connectivity among programmers. It offers a robust space where developers can share knowledge, collaborate
+            on projects, and engage in discussions on cutting-edge technologies. With a focus on fostering community
+            and
+            innovation, Hyperlink provides programmers with the tools and environment they need to stay informed,
+            connected, and inspired in their professional journeys.
+          </p>
+          <div class="btns">
+           <a href="login.html"><button class="read__more">Log in </button></a>
+            <button class="our__blogs">Join Now</button>
+          </div>
+          <!-- <div class="chevrons">
+            <span class="chev__left">
+              <i class="ri-arrow-left-s-line"></i>
+            </span>
+            <span class="chev__right">
+              <i class="ri-arrow-right-s-line"></i>
+            </span>
+          </div> -->
+        </div>
+        <div class="col-lg-6 mt-5">
+          <video src="/images/landing-page.mp4" width="65%" alt="" autoplay controls loop>
+        </div>
+      </div>
+    </div>
 
-        <form id="login">
-            <div>
-                <label for="username">Username</label>
-                <input type="text" id="username" minlength="3">
-            </div>
 
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" minlength="6">
-            </div>
 
-            <button id="loginButton" type="submit">Login</button>
-        </form>
 
-    </main>
 
-    <footer></footer>
 
-    <!-- Page-specific code -->
-    <script src="./landing.js"></script>
-</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+      <script>src="scripts"</script>
+
+
+
+
+  </body>
+
 </html>

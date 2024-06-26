@@ -25,6 +25,9 @@
     <script src="../auth.js"></script>
     <script>
         if (isLoggedIn() === false) window.location.replace("/");
+        let userToken = JSON.parse(localStorage.getItem("login-data"));
+
+        console.log(userToken.token)
     </script>
 </head>
 <body>
