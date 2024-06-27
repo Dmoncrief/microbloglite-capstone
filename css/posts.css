@@ -103,8 +103,8 @@ display: inline-block;
     display: flex;
     align-items: flex-start; /* Align items at the start of the flex container */
     padding: 13px 5%;
-    max-width: 2200px; /* Adjust as needed */
-    margin: auto; /* Center container horizontally */
+    max-width: 2200px; 
+    margin: auto; 
 }
 
 .left-sidebar{
