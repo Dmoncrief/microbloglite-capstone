@@ -1,6 +1,7 @@
 <!-- POSTS page -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,14 +17,15 @@
     <title>/POSTS</title>
 
     <!-- Run BEFORE page is finished loading (before window.onload): -->
-    <script src="../auth.js"></script>
+    <script src="/scripts/auth.js"></script>
     <script>
         if (isLoggedIn() === false) window.location.replace("/");
-        let userToken = JSON.parse(localStorage.getItem("login-data"));
+        // let userToken = JSON.parse(localStorage.getItem("login-data"));
 
-        console.log(userToken.token)
+        // console.log(userToken.token)
     </script>
 </head>
+
 <body>
     <nav>
         <div class="nav-left">
@@ -62,6 +64,7 @@
         </div>
     </nav>
     <div class="container">
+
         <div class="left-panel">
             <ul>
                 <li>
@@ -122,7 +125,6 @@
             </div>
         </div>
 
-
         <div class="middle-panel">
 
             <div class="story-section">
@@ -178,7 +180,7 @@
                     </div>
                     <input type="text" placeholder="What's on your mind ?" />
                 </div>
-                
+
                 <div class="post-bottom">
                     <div class="action">
                         <ion-icon name="videocam"></ion-icon>
@@ -210,7 +212,7 @@
                     I cant wait until <br>
                     Capstone 3 <br>😏
                 </div>
-                
+
                 <div class="post-bottom">
                     <div class="action">
                         <ion-icon name="thumbs-up"></ion-icon>
@@ -243,7 +245,7 @@
                     Can anybody tell me what i am doing wrong?
                     <img src="/images/code-img.png" />
                 </div>
-                
+
                 <div class="post-bottom">
                     <div class="action">
                         <ion-icon name="thumbs-up"></ion-icon>
@@ -321,8 +323,11 @@
                     </div>
                 </div>
             </div>
-            
+            <div id="hostDiv">
+            </div>
+
         </div>
+
         <div class="right-panel">
             <div class="pages-section">
                 <h4>Your Projects</h4>
@@ -391,32 +396,33 @@
                     </div>
                     <p class="name">Mark Grimmond</p>
                 </a>
-                
+
             </div>
         </div>
 
 
-       <!-- add logout button the the post poage to yiu can log a user out -->
+        <!-- add logout button the the post poage to yiu can log a user out -->
     </div>
-   
-   
-   
-   
-   
-   
-   
-   
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="scripts/posts.js"></script>
 
 
-<!-- icons scripts -->
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="posts.js"></script>
+
+
+
+    <!-- icons scripts -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 
-  </body>
-</html>
-   
+</body>
 
-  
+</html>

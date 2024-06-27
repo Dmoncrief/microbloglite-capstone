@@ -2,100 +2,91 @@
 
 "use strict";
 
-// API endpoint URL
-const apiUrl = '';
+function getPosts() {
+  const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${JSON.parse(window.localStorage.getItem("login-data")).token}`,
+    },
+  };
 
-// Function to fetch posts from API
-async function fetchPosts() {
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  fetch(apiBaseURL + "/api/posts", options)
+    .then(response => response.json())
+    .then(posts => {
+      posts.forEach(post => {
+        // Create elements for each post
+        let postDiv = document.createElement('div');
+        postDiv.classList.add('post');
+
+        // Post top section (profile image, name, time)
+        let postTop = document.createElement('div');
+        postTop.classList.add('post-top');
+
+        let dpDiv = document.createElement('div');
+        dpDiv.classList.add('dp');
+        let profileImg = document.createElement('img');
+        profileImg.src = "https://picsum.photos/200/300"; 
+        profileImg.alt = "Profile Image";
+        dpDiv.appendChild(profileImg);
+        postTop.appendChild(dpDiv);
+
+        let postInfoDiv = document.createElement('div');
+        postInfoDiv.classList.add('post-info');
+        let nameP = document.createElement('p');
+        nameP.classList.add('name');
+        nameP.textContent = post.username; 
+        let timeSpan = document.createElement('span');
+        timeSpan.classList.add('time');
+        timeSpan.textContent = "12 hrs ago"; 
+        postInfoDiv.appendChild(nameP);
+        postInfoDiv.appendChild(timeSpan);
+        postTop.appendChild(postInfoDiv);
+
+        let ellipsisIcon = document.createElement('ion-icon');
+        ellipsisIcon.setAttribute('name', 'ellipsis-vertical');
+        postTop.appendChild(ellipsisIcon);
+
+        postDiv.appendChild(postTop);
+
+        // Post content section
+        let postContentDiv = document.createElement('div');
+        postContentDiv.classList.add('post-content');
+        postContentDiv.textContent = post.text; 
+        postDiv.appendChild(postContentDiv);
+
+        // Post bottom section (like, comment, share)
+        let postBottomDiv = document.createElement('div');
+        postBottomDiv.classList.add('post-bottom');
+
+        let actions = ['thumbs-up', 'chatbox-ellipses', 'share-social'];
+        actions.forEach(action => {
+          let actionDiv = document.createElement('div');
+          actionDiv.classList.add('action');
+          let icon = document.createElement('ion-icon');
+          icon.setAttribute('name', action);
+          actionDiv.appendChild(icon);
+          let span = document.createElement('span');
+          span.textContent = action === 'thumbs-up' ? 'Like' : action === 'chatbox-ellipses' ? 'Comment' : 'Share'; 
+          actionDiv.appendChild(span);
+          postBottomDiv.appendChild(actionDiv);
+        });
+
+        postDiv.appendChild(postBottomDiv);
+
+        // Append the constructed post div 
+        document.getElementById('hostDiv').appendChild(postDiv);
+      });
+    })
+    .catch(error => console.error('Error fetching posts:', error));
 }
+getPosts();
 
-// Function to render posts on the page
-function renderPosts(posts) {
-  const postContainer = document.querySelector('.middle-panel');
-  postContainer.innerHTML = '';
 
-  posts.forEach((post) => {
-    const postHTML = `
-      <div class="post">
-        <div class="post-top">
-          <div class="dp">
-            <img src="${post.author.profilePicture}" alt="">
-          </div>
-          <div class="post-info">
-            <p class="name">${post.author.name}</p>
-            <span class="time">${post.createdAt}</span>
-          </div>
-          <i class="fas fa-ellipsis-h"></i>
-        </div>
 
-        <div class="post-content">
-          ${post.content}
-          ${post.image ? `<img src="${post.image}" alt="">` : ''}
-        </div>
+//  fetch posts from api to create posts
 
-        <div class="post-bottom">
-          <div class="action">
-            <i class="far fa-thumbs-up"></i>
-            <span>Like</span>
-          </div>
-          <div class="action">
-            <i class="far fa-comment"></i>
-            <span>Comment</span>
-          </div>
-          <div class="action">
-            <i class="fa fa-share"></i>
-            <span>Share</span>
-          </div>
-        </div>
-      </div>
-    `;
 
-    postContainer.innerHTML += postHTML;
-  });
-}
 
-// Fetch posts on page load
-fetchPosts().then((posts) => {
-  renderPosts(posts);
-});
 
-// Add event listener to create post button
-const createPostButton = document.querySelector('.post.create input[type="text"]');
-createPostButton.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    const postContent = createPostButton.value.trim();
-    if (postContent) {
-      // Create a new post object
-      const newPost = {
-        content: postContent,
-        author: {
-          name: 'Your Name',
-          profilePicture: '',
-        },
-      };
-
-      // Send a POST request to the API to create a new post
-      fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newPost),
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        // Add the new post to the page
-        renderPosts([data]);
-        createPostButton.value = '';
-      })
-      .catch((error) => console.error(error));
-    }
-  }
-});

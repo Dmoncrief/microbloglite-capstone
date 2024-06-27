@@ -16,6 +16,7 @@ var apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
       fullName: fullName.value,
       password: password.value,
     }
+    // text: textfield.value
 
     console.log(bodyData);
 
