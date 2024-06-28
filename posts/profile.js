@@ -1,65 +1,92 @@
 "use strict";
+const postBox = document.getElementById("textArea");
+const fullNameEl = document.querySelector("#fullname");
+const currentUser = JSON.parse(localStorage.getItem("login-data"));
+  const submitBtn = document.getElementById("submitBtn");
+  const logoutBtn= document.querySelector("#logout");
+  const backToPostsBtn = document.querySelector("#backPosts");
 
 window.onload = function () {
-  const submitBtn = document.getElementById("sumbitBtn");
-  //   console.log("working");
+  getUserInfo();
 
-  // getLoginUserData();
-  //   submitBtn.onclick = onClickedsubmitBtn;
 
   if (submitBtn) {
     console.log("working");
-    submitBtn.onclick = onClickedsubmitBtn;
+
+    submitBtn.addEventListener("click",
+      (event) => {
+        onClickedsubmitBtn(event);
+       // console.log("event listener added to submit button")
+      });
   } else {
     console.error("Submit btn not found");
   }
   //   submitBtn.onclick = onClickedsubmitBtn;
+
+
+  logoutBtn.addEventListener("click",() =>{
+    logout();
+  })
+
+backToPostsBtn.addEventListener("click", ()=>{
+window.location.href = "posts";
+})
+
+
+  console.log(currentUser);
 };
 
-function getLoginData() {
-  return JSON.parse(localStorage.getItem("loginToken"));
-}
-
-function onClickedsubmitBtn() {
+function onClickedsubmitBtn(event) {
+  event.preventDefault();
   createPostForUser();
   clearPostTextBox();
 }
 
 function createPostForUser() {
-  const loginToken = getLoginData();
   let bodyData = {
-    text: document.getElementById("createPost").value,
+    text: postBox.value,
   };
 
   const options = {
     method: "POST",
     body: JSON.stringify(bodyData),
     headers: {
-      "content-type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${loginToken.token}`,
+      "Content-type": "application/json; charset=UTF-8",
+      Authorization: `Bearer ${currentUser.token}`,
     },
   };
 
-  fetch(
-    "https://microbloglite.us-east-2.elasticbeanstalk.com/api/post",
-    options
-  )
+  fetch(apiBaseURL + "/api/posts", options)
     .then((response) => response.json())
     .then((data) => {
-      //   console.log(data);
-      if (data) {
-        addPostToProfilePage(data);
-        addPostToHomePage(data);
-      }
+      console.log(data);
+
+      //  addPostToProfilePage(data);
+      // addPostToHomePage(data);
     })
     .catch((err) => {
       console.error("Error:", err);
     });
 }
 
-function clearPostTextBox() {
-  document.getElementById("createPost").value = "";
+function getUserInfo() {
+  fetch(apiBaseURL + `/api/users/${currentUser.username}`, {
+    headers: {
+      "content-type": "application/json; charset=UTF-8",
+      Authorization: `Bearer ${currentUser.token}`,
+    },
+  })
+    .then((resp) => resp.json())
+    .then((userInfo) => {
+      //console.log(userInfo);
+      fullNameEl.innerHTML = userInfo.fullName;
+    });
 }
+
+function clearPostTextBox() {
+ postBox.value = "";
+}
+
 
 function addPostToProfilePage(post) {
   postDiv.classList.add("post");

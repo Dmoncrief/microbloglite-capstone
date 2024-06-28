@@ -144,3 +144,75 @@
 
 /* write post css here */
 
+
+/* Main container styles */
+.main {
+  padding: 20px 0;
+}
+
+/* Card styles */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Textarea and form styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.btn-primary:disabled,
+.btn-primary.disabled {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:disabled:hover,
+.btn-primary.disabled:hover {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Optional: Additional customization */
+.card-title {
+  font-weight: bold;
+}
+
+.card-text {
+  color: #6c757d; /* Bootstrap secondary text color */
+}
+
+

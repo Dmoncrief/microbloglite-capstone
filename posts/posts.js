@@ -3,7 +3,19 @@
 "use strict";
 // const
 
+const logoutBtn= document.querySelector("#logout");
+
+
+
+window.onload = getPosts();
+
+
+
 function getPosts() {
+  logoutBtn.addEventListener("click",() =>{
+    logout();
+  })
+
   const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
 
   const options = {
@@ -96,6 +108,8 @@ function getPosts() {
     })
     .catch((error) => console.error("Error fetching posts:", error));
 }
-getPosts();
+//getPosts();
 
 //  fetch posts from api to create posts
+
+
