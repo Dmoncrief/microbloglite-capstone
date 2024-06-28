@@ -23,6 +23,11 @@
 
 a {
   text-decoration: none;
+  color: #fff !important;
+}
+#white{
+  color: #000 !important;
+
 }
 
 input::placeholder {
